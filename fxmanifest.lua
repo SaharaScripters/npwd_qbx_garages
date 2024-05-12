@@ -5,13 +5,12 @@ description 'Qbox Garages app for NPWD'
 version '1.0.0'
 repository 'https://github.com/Qbox-Project/npwd_qbx_garages'
 
-ox_lib 'locale'
+client_script 'client/client.lua'
+
 shared_scripts {
     '@ox_lib/init.lua',
     '@qbx_core/modules/lib.lua'
 }
-
-client_script 'client/client.lua'
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
@@ -21,7 +20,6 @@ server_scripts {
 ui_page 'web/dist/index.html'
 
 files {
-    'locales/*.json',
     'web/dist/index.html',
     'web/dist/**/*',
 }
