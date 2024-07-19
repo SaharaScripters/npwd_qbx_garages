@@ -1,10 +1,11 @@
 lib.versionCheck('Qbox-project/npwd_qbx_garages')
 
-local config = require '@ss_garages.config.garages'
+local garagesData = require '@ss_garages.data.garages'
 local VEHICLES = exports.qbx_core:GetVehiclesByName()
 
 local function findSimiliarPlate(plate)
 	local vehicles = GetAllVehicles()
+	---@diagnostic disable-next-line: param-type-mismatch
 	for k, v in pairs(vehicles) do
 		local p = GetVehicleNumberPlateText(v)
 		if plate == p then
@@ -45,7 +46,7 @@ lib.callback.register('npwd_qbx_garages:server:getPlayerVehicles', function(sour
 		vehicleData.engine = vehProps?.engineHealth or 1000
 		vehicleData.fuel = vehProps?.fuelLevel or 100
 		vehicleData.body = vehProps?.bodyHealth or 1000
-		vehicleData.garage = config.locations[vehicleData.garage]?.label or 'Unknown Garage'
+		vehicleData.garage = garagesData.publicGarages[vehicleData.garage]?.label or 'Unknown Garage'
 	end
 	return vehicles
 end)
